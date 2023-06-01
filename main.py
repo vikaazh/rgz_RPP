@@ -12,9 +12,9 @@ import os
 bot_token = os.getenv('API_TOKEN')
 
 API_KEY = 'API'
-DB_NAME = 'Name'
+DB_NAME = 'DB_NAME'
 DB_USER = 'postgres'
-DB_PASSWORD = 'PASSWORD'
+DB_PASSWORD = 'postgres'
 DB_HOST = 'localhost'
 
 class Form(StatesGroup):
@@ -94,7 +94,7 @@ async def periodic_task():
             profit = ((end_price - start_price) / start_price) * 100
             cur.execute("UPDATE stocks SET profit = %s WHERE id = %s", (profit, id))
         conn.commit()
-        await asyncio.sleep(24 * 60 * 60)
+        await asyncio.sleep(10)
 
 if __name__ == '__main__':
     from aiogram import executor
